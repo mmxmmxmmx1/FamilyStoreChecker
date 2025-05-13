@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <!-- CameraX PreviewView -->
+        <androidx.camera.view.PreviewView
+            android:id="@+id/previewView"
+            android:layout_width="0dp"
+            android:layout_height="200dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <!-- 掃描結果 -->
+        <TextView
+            android:id="@+id/textResult"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="掃描結果顯示"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@id/previewView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <!-- 顯示產品圖片 -->
+        <ImageView
+            android:id="@+id/imgProduct"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="16dp"
+            android:contentDescription="產品圖片"
+            android:src="@drawable/ic_no_product"
+           app:layout_constraintTop_toBottomOf="@id/textResult"
+           app:layout_constraintStart_toStartOf="parent"/>
+
+        <!-- 顯示產品位置 -->
+        <TextView
+            android:id="@+id/textLocation"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="位置："
+            app:layout_constraintTop_toBottomOf="@id/textResult"
+            app:layout_constraintStart_toEndOf="@id/imgProduct"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <!-- 分隔線 -->
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="#CCCCCC"
+            android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@id/imgProduct"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <!-- 動態管理：條碼輸入 -->
+        <EditText
+            android:id="@+id/etBarcode"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:hint="輸入條碼"
+            android:inputType="text"
+            app:layout_constraintTop_toBottomOf="@id/imgProduct"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <!-- 動態管理：名稱輸入 -->
+        <EditText
+            android:id="@+id/etName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:hint="輸入商品名稱"
+            android:inputType="text"
+            app:layout_constraintTop_toBottomOf="@id/etBarcode"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <!-- 動態管理：位置輸入 -->
+        <EditText
+            android:id="@+id/etLocation"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:hint="輸入放置位置"
+            android:inputType="text"
+            app:layout_constraintTop_toBottomOf="@id/etName"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <!-- 新增按鈕 -->
+        <Button
+            android:id="@+id/btnAdd"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="新增商品"
+            app:layout_constraintTop_toBottomOf="@id/etLocation"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btnRemove"
+            app:layout_constraintWidth_percent="0.48"/>
+
+        <!-- 刪除按鈕 -->
+        <Button
+            android:id="@+id/btnRemove"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="刪除商品"
+            app:layout_constraintTop_toBottomOf="@id/etLocation"
+            app:layout_constraintStart_toEndOf="@id/btnAdd"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintWidth_percent="0.48"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

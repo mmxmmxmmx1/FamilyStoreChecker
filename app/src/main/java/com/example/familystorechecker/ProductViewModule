@@ -1,0 +1,61 @@
+package com.example.familystorechecker;
+
+import android.app.Application;
+
+import androidx.annotation.NonNull;
+import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+
+import java.util.List;
+
+public class ProductViewModel extends AndroidViewModel {
+
+    private final ProductRepository repository;
+    private final LiveData<List<Product>> allProducts;
+    private final MutableLiveData<Product> selectedProduct = new MutableLiveData<>();
+
+    public ProductViewModel(@NonNull Application application) {
+        super(application);
+        repository = new ProductRepository(application);
+        allProducts = repository.getAllProducts();
+    }
+
+    // 取得所有商品的 LiveData
+    public LiveData<List<Product>> getAllProducts() {
+        return allProducts;
+    }
+
+    // 插入商品（非同步）
+    public void insert(Product product) {
+        repository.insert(product);
+    }
+
+    // 更新商品（非同步）
+    public void update(Product product) {
+        repository.update(product);
+    }
+
+    // 刪除商品（非同步）
+    public void delete(Product product) {
+        repository.delete(product);
+    }
+
+    /**
+     * 同步方法：根據條碼查詢商品（請勿在主執行緒呼叫）
+     * 建議未來改為 LiveData 或使用 coroutine 搭配 suspend function
+     */
+    public Product getProductByBarcode(String barcode) {
+        return repository.getProductByBarcode(barcode);
+    }
+
+    // 設定目前選擇的商品
+    public void selectProduct(Product product) {
+        selectedProduct.setValue(product);
+    }
+
+    // 取得目前選擇的商品
+    public LiveData<Product> getSelectedProduct() {
+        return selectedProduct;
+    }
+}
